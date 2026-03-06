@@ -1,6 +1,22 @@
-const episodes = [];
+let episodes = [];
 let currentEp = null;
 let lang = 'en';
+
+async function loadData() {
+    try {
+        // This is the line that actually "downloads" the file
+        const response = await fetch('dbepisodes.json');
+        
+        // This line converts the text in the file into a JS Array
+        episodes = await response.json();
+        
+        // Now that the data is here, you can draw the list on the screen
+        renderList(episodes);
+        
+    } catch (error) {
+        console.error("The JSON file failed to load:", error);
+    }
+}
 
 // 2. RENDER FUNCTION
 function renderList(data) {
