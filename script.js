@@ -1,69 +1,82 @@
-let episodes = [];
-let currentEp = null;
-let lang = 'en';
+let allEpisodes = [];
+    let currentEp = null;
+    let lang = 'en';
 
-async function loadData() {
-    try {
-        // This is the line that actually "downloads" the file
-        const response = await fetch('dbepisodes.json');
+    // 1. DYNAMIC DATA LOADING
+    async function initPortal() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const seriesKey = urlParams.get('series') || 'db'; // Default to DB
         
-        // This line converts the text in the file into a JS Array
-        episodes = await response.json();
-        
-        // Now that the data is here, you can draw the list on the screen
-        renderList(episodes);
-        
-    } catch (error) {
-        console.error("The JSON file failed to load:", error);
+        // Update Title UI
+        const titles = {
+            'db': 'Dragon Ball',
+            'dbz': 'Dragon Ball Z',
+            'dbzkai': 'Dragon Ball Z Kai',
+            'dbzmovies': 'Movies & Specials',
+            'dbgt':'Dragon Ball GT',
+        };
+        document.getElementById('series-title').innerText = titles[seriesKey] || 'CC Portal';
+
+        try {
+            // This attempts to fetch e.g., "dbz.json" or "db.json"
+            const response = await fetch(`${seriesKey}.json`);
+            if (!response.ok) throw new Error("JSON not found");
+            allEpisodes = await response.json();
+            renderList(allEpisodes);
+        } catch (err) {
+            console.error(err);
+            // Fallback: If JSON is missing, show a helpful message
+            document.getElementById('episode-list').innerHTML = `
+                <div class="text-center p-8 text-gray-400">
+                    <p class="mb-4">No data found for "${seriesKey}".</p>
+                    <p class="text-xs">Create a file named <b>${seriesKey}.json</b> to populate this list.</p>
+                </div>`;
+        }
+        lucide.createIcons();
     }
-}
 
-// 2. RENDER FUNCTION
-function renderList(data) {
-    const list = document.getElementById('episode-list');
-    list.innerHTML = data.map(ep => `
-        <div onclick="playEp(${ep.id})" class="p-3 rounded-lg bg-gray-800/50 hover:bg-orange-600/20 border border-transparent hover:border-orange-500/50 cursor-pointer transition group">
-            <div class="flex justify-between items-center">
-                <span class="text-xs text-gray-500 group-hover:text-orange-400 font-mono">EP ${ep.id}</span>
-                <span class="text-[10px] text-gray-600">${ep.duration}</span>
-            </div>
-            <h4 class="text-sm font-medium truncate">${ep.title}</h4>
-        </div>
-    `).join('');
-}
+    function renderList(data) {
+        const list = document.getElementById('episode-list');
+        list.innerHTML = data.map(ep => `
+            <div onclick="playEp(${ep.id})" class="p-3 rounded-lg bg-black/40 hover:bg-orange-600/20 border border-white/5 hover:border-orange-500/50 cursor-pointer transition-all group">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="text-[10px] text-orange-500 font-black tracking-tighter">EPISODE ${ep.id}</span>
+                    <span class="text-[10px] text-gray-500">${ep.duration}</span>
+                </div>
+                <h4 class="text-sm font-bold text-gray-200 group-hover:text-white truncate">${ep.title}</h4>
+            </div>`
+        ).join('');
+    }
 
-// 3. SEARCH LOGIC
-function handleSearch(query) {
-    const filtered = episodes.filter(ep => 
-        ep.title.toLowerCase().includes(query.toLowerCase())
-    );
-    renderList(filtered);
-}
+    function handleSearch(query) {
+        const filtered = allEpisodes.filter(ep => 
+            ep.title.toLowerCase().includes(query.toLowerCase()) ||
+            ep.id.toString() === query
+        );
+        renderList(filtered);
+    }
 
-// 4. PLAYER LOGIC
-function playEp(id) {
-    currentEp = episodes.find(e => e.id === id);
-    const video = document.getElementById('main-video');
-    const source = document.getElementById('video-source');
-    
-    source.src = lang === 'en' ? currentEp.en : currentEp.jp;
-    video.load();
-    video.play();
+    function playEp(id) {
+        currentEp = allEpisodes.find(e => e.id === id);
+        const video = document.getElementById('main-video');
+        const source = document.getElementById('video-source');
+        
+        source.src = lang === 'en' ? currentEp.en : currentEp.jp;
+        video.load();
+        video.play();
 
-    document.getElementById('display-title').innerText = currentEp.title;
-    document.getElementById('display-meta').innerText = `Episode ${currentEp.id} • ${lang.toUpperCase()}`;
-}
+        document.getElementById('display-title').innerText = currentEp.title;
+        document.getElementById('display-meta').innerText = `NOW STREAMING • EPISODE ${currentEp.id}`;
+        
+        if (window.innerWidth < 1024) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-function switchLang(newLang) {
-    lang = newLang;
-    document.getElementById('btn-en').className = lang === 'en' ? 'px-4 py-2 rounded bg-orange-600 font-bold text-xs uppercase' : 'px-4 py-2 rounded bg-gray-800 font-bold text-xs uppercase';
-    document.getElementById('btn-jp').className = lang === 'jp' ? 'px-4 py-2 rounded bg-orange-600 font-bold text-xs uppercase' : 'px-4 py-2 rounded bg-gray-800 font-bold text-xs uppercase';
-    
-    if (currentEp) playEp(currentEp.id);
-}
+    function switchLang(newLang) {
+        lang = newLang;
+        document.getElementById('btn-en').className = lang === 'en' ? 'px-4 py-1.5 rounded-md bg-orange-600 font-bold text-xs transition uppercase' : 'px-4 py-1.5 rounded-md font-bold text-xs transition uppercase hover:text-white text-gray-400';
+        document.getElementById('btn-jp').className = lang === 'jp' ? 'px-4 py-1.5 rounded-md bg-orange-600 font-bold text-xs transition uppercase' : 'px-4 py-1.5 rounded-md font-bold text-xs transition uppercase hover:text-white text-gray-400';
+        
+        if (currentEp) playEp(currentEp.id);
+    }
 
-// Initialize
-window.onload = () => {
-    renderList(episodes);
-    lucide.createIcons();
-};
+    window.onload = initPortal;
