@@ -34,6 +34,7 @@ async function initPortal() {
             </div>`;
     }
     
+    // @ts-ignore
     lucide.createIcons();
 }
 
