@@ -19,7 +19,7 @@ let allEpisodes = [];
 
         try {
             // This attempts to fetch e.g., "dbz.json" or "db.json"
-            const response = await fetch(`${seriesKey}.json`);
+            const response = await fetch(`episodes/${seriesKey}.json`);
             if (!response.ok) throw new Error("JSON not found");
             allEpisodes = await response.json();
             renderList(allEpisodes);
