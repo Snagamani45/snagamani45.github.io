@@ -1,4 +1,3 @@
-/* global lucide */
 let allEpisodes = [];
 let currentEp = null;
 let lang = 'en';
