@@ -348,5 +348,55 @@
         "id": 70,
         "title": "Dragon Ball 070 DBOX CC 480p x264-SoM",
         "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_070_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 71,
+        "title": "Dragon Ball 071 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_071_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 72,
+        "title": "Dragon Ball 072 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_072_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 73,
+        "title": "Dragon Ball 073 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_073_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 74,
+        "title": "Dragon Ball 074 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_074_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 75,
+        "title": "Dragon Ball 075 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_075_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 76,
+        "title": "Dragon Ball 076 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_076_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 77,
+        "title": "Dragon Ball 077 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_077_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 78,
+        "title": "Dragon Ball 078 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_078_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 79,
+        "title": "Dragon Ball 079 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_079_DBOX_CC_480p_x264-SoM/master.m3u8"
+    },
+    {
+        "id": 80,
+        "title": "Dragon Ball 080 DBOX CC 480p x264-SoM",
+        "hls": "https://archive.org/download/cc-dragon-ball-archive-202603/Dragon_Ball_080_DBOX_CC_480p_x264-SoM/master.m3u8"
     }
 ]
