@@ -22,15 +22,25 @@ function initPortal() {
         autoplay: false,
         preload: 'auto',
         fluid: true,
-        html5: { hls: { overrideNative: true } },
+        html5: { 
+            hls: { 
+                overrideNative: true 
+            },
+            vhs: {
+                overrideNative: true,
+                allowSeeksWithinUnsafeLiveWindow: true,
+                handleManifestRedirects: true,
+            },
+            nativeAudioTracks: false,
+            nativeVideoTracks: false,
+        },
         controlBar: {
             skipButtons: {
-                backward: 10,
-                forward: 10
+                backward: 5,
+                forward: 5
             }
         }
     });
-
     player.on('keydown', (e) => {
         if (e.key === 'ArrowRight') player.currentTime(player.currentTime() + 10);
         if (e.key === 'ArrowLeft') player.currentTime(player.currentTime() - 10);
