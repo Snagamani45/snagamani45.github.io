@@ -4,4 +4,14 @@
         "title": "Dragon Ball Z 001 480p DBox DVD REGRADE Dual-Audio FLAC2 0 x264-SoM",
         "hls": "https://cors.archive.org/cors/cc-dragon-ball-z-archive/Dragon_Ball_Z_001_480p_DBox_DVD_REGRADE_Dual-Audio_FLAC2_0_x264-SoM/master.m3u8"
     }
+    {
+        "id": 2,
+        "title": "Dragon Ball Z 002 480p DBox DVD REGRADE Dual-Audio FLAC2 0 x264-SoM",
+        "hls": "https://cors.archive.org/cors/cc-dragon-ball-z-archive/Dragon_Ball_Z_002_480p_DBox_DVD_REGRADE_Dual-Audio_FLAC2_0_x264-SoM-FIXED/master.m3u8"
+    },
+    {
+        "id": 3,
+        "title": "Dragon Ball Z 003 480p DBox DVD REGRADE Dual-Audio FLAC2 0 x264-SoM",
+        "hls": "https://cors.archive.org/cors/cc-dragon-ball-z-archive/Dragon_Ball_Z_003_480p_DBox_DVD_REGRADE_Dual-Audio_FLAC2_0_x264-SoM-FIXED/master.m3u8"
+    }
 ]
